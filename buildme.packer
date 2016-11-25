@@ -1,0 +1,24 @@
+{
+  "builders": [
+  {
+    "type": "googlecompute",
+    "project_id": "bitnamigcetest2",
+    "source_image_project_id": "bitnami-launchpad",
+    "source_image": "bitnami-nodejs-6-9-1-0-linux-debian-8-x86-64",
+    "image_name": "{{user `custom_image_name`}}",
+    "zone": "{{user `zone`}}",
+    "ssh_username": "bitnami"
+  }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": ".",
+      "destination": "/tmp/app"
+    },
+    {
+      "type": "shell",
+      "script": "deployment/setup_things.sh"
+    }
+  ]
+}
