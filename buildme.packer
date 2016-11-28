@@ -8,11 +8,6 @@
     "image_name": "{{user `custom_image_name`}}",
     "zone": "{{user `zone`}}",
     "ssh_username": "bitnami"
-  },
-  {
-    "type": "docker",
-    "image": "bitnami/express",
-    "export_path": "{{user `custom_image_name`}}.tar"
   }
   ],
   "provisioners": [
