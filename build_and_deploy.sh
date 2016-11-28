@@ -1,11 +1,6 @@
 #! /bin/bash
 set -ex
 
-# Download Bitnami's deployment tarball
-curl -L https://github.com/beuno/bitnami-deploy-nodejs/archive/master.zip -o deployment.zip
-unzip -o deployment.zip
-mv bitnami-deploy-nodejs-master/ deployment/
-
 # What zone to build and deploy in
 ZONE=us-central1-f
 
