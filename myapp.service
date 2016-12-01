@@ -4,7 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/opt/bitnami/nodejs/bin/node /opt/bitnami/app/bin/www
+WorkingDirectory=/opt/bitnami/app
+ExecStart=/opt/bitnami/nodejs/bin/npm start
 
 [Install]
 WantedBy=multi-user.target
