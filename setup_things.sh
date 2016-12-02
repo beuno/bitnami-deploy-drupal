@@ -15,5 +15,5 @@ sudo mv /tmp/app /opt/bitnami/app
 sudo /opt/bitnami/ctlscript.sh restart apache
 
 # Install all our NodeJS dependencies
-cd /opt/bitnami/app && sudo npm install
+cd /opt/bitnami/app && npm install
 
