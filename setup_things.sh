@@ -12,7 +12,7 @@
 sudo mv /tmp/app /opt/bitnami/apps/drupal/htdocs/modules/mymod
 
 # Enable all drupal modules
-cd /opt/bitnami/apps/drupal/htdocs && drush pm-enable mymod -y
+cd /opt/bitnami/apps/drupal/htdocs && drush pm-enable robotstxt -y
 
 # With our code in place, restart Apache
 sudo /opt/bitnami/ctlscript.sh restart apache
