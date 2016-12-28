@@ -1,19 +1,20 @@
 # Startup script to launch the node app
-sudo mv /tmp/app/deployment/myapp.service /lib/systemd/system/myapp.service
+#sudo mv /tmp/app/deployment/myapp.service /lib/systemd/system/myapp.service
 
 # Point Apache to our config
-sudo mv /tmp/app/deployment/apache_conf/bitnami-apps-prefix.conf /opt/bitnami/apache2/conf/bitnami/bitnami-apps-prefix.conf
+#sudo mv /tmp/app/deployment/apache_conf/bitnami-apps-prefix.conf /opt/bitnami/apache2/conf/bitnami/bitnami-apps-prefix.conf
 
 
 # Auto-start the service
-sudo systemctl enable myapp.service
+#sudo systemctl enable myapp.service
 
-# Move the code into a permanent location
-sudo mv /tmp/app /opt/bitnami/app
+# Move the module into Drupal's location
+sudo mv /tmp/mymod /opt/bitnami/apps/drupal/htdocs/modules/
+
+# Enable all drupal modules
+cd /opt/bitnami/apps/drupal/htdocs && drush pm-enable mymod -y
 
 # With our code in place, restart Apache
 sudo /opt/bitnami/ctlscript.sh restart apache
 
-# Install all our NodeJS dependencies
-cd /opt/bitnami/app && npm install
 
