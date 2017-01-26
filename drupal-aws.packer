@@ -2,8 +2,8 @@
   "builders": [
   {
     "type": "amazon-ebs",
-    "aws_access_key": "{{user `aws_access_key`}}",
-    "aws_secret_key": "{{user `aws_secret_key`}}",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
     "region": "{{user `zone`}}",
     "source_ami": "ami-3ce50d2a",
     "instance_type": "m3.medium",
