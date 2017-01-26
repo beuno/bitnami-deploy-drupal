@@ -21,7 +21,6 @@ SERVICE=$BUILD_TAG
 # Create and boot the instance
 aws ec2 run-instances \
   --image-id $AMI_ID \
-  --region $ZONE
   --count 1 \
   --instance-type m3.medium
 
