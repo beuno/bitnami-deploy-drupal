@@ -1,0 +1,23 @@
+{
+  "builders": [
+  {
+    "type": "amazon-ebs",
+    "region": "{{user `zone`}}",
+    "source_ami": "ami-3ce50d2a",
+    "instance_type": "m3.medium",
+    "ssh_username": "bitnami",
+    "ami_name": "{{user `custom_image_name`}}"
+  }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": ".",
+      "destination": "/tmp/app"
+    },
+    {
+      "type": "shell",
+      "script": "deployment/setup_things.sh"
+    }
+  ]
+}
