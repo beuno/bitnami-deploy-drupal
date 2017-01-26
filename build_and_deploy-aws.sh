@@ -19,4 +19,5 @@ aws ec2 run-instances \
   --image-id $AMI_ID \
   --count $INSTANCE_COUNT \
   --instance-type $INSTANCE_TYPE \
+  --key-name $INSTANCE_KEY_NAME \
   --region $ZONE
