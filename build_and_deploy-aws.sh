@@ -14,5 +14,5 @@ AMI_ID=$(grep 'artifact,0,id' packer-build-$BUILD_TAG.log | cut -d, -f6 | cut -d
 aws ec2 run-instances \
   --image-id $AMI_ID \
   --count 1 \
-  --instance-type m3.medium
-
+  --instance-type m3.medium \
+  --region $ZONE
