@@ -8,8 +8,8 @@ ZONE=us-east-1
 packer build -machine-readable \
   -var "zone=$ZONE" \
   -var "custom_image_name=$BUILD_TAG" \ 
-  -var "aws_access_key=AWS_ACCESS_KEY" \
-  -var "aws_secret_key=AWS_SECRET_KEY" \
+  -var "aws_access_key=$AWS_ACCESS_KEY" \
+  -var "aws_secret_key=$AWS_SECRET_KEY" \
   deployment/drupal-aws.packer | tee packer-build-$BUILD_TAG.log
 
 # Extract the ami_id of the built image from the log
