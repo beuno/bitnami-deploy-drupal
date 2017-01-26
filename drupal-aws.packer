@@ -8,7 +8,10 @@
     "source_ami": "ami-3ce50d2a",
     "instance_type": "m3.medium",
     "ssh_username": "bitnami",
-    "ami_name": "{{user `custom_image_name`}}"
+    "ami_name": "{{user `custom_image_name`}}",
+    "tags": {
+        "name": "{{user `image_name`}}"
+    }
   }
   ],
   "provisioners": [
