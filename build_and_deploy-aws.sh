@@ -10,9 +10,6 @@ packer build -machine-readable -var "zone=$ZONE" -var "custom_image_name=$BUILD_
 # Extract the ami_id of the built image from the log
 AMI_ID=$(grep 'artifact,0,id' packer-build-$BUILD_TAG.log | cut -d, -f6 | cut -d: -f2)
 
-# The name of the instance to launch, BUILD_TAG is Jenkin's job ID and name
-SERVICE=$BUILD_TAG
-
 # Create and boot the instance
 aws ec2 run-instances \
   --image-id $AMI_ID \
