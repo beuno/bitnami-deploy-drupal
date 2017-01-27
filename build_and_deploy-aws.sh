@@ -24,14 +24,13 @@ INSTANCE_ID=$(aws ec2 run-instances \
   --output text \
   --query 'Instances[*].InstanceId')
 
-echo $INSTANCE_ID
+aws ec2 create-tags --resources $INSTANCE_ID --tags Key=name,Value=$BUILD_TAG
 
 # Wait for the instance to boot
-while state=$(aws ec2 describe-instances --instance-ids $instance_id --output text --query 'Reservations[*].Instances[*].State.Name'); test "$state" = "pending"; do
+while state=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --output text --query 'Reservations[*].Instances[*].State.Name'); test "$state" = "pending"; do
   sleep 1; echo -n '.'
 done; echo " $state"
 
-# Print out the public IP address of the instance 
+# Public IP address of the instance 
 IP_ADDRESS=$(aws ec2 describe-instances --instance-ids $instance_id --output text --query 'Reservations[*].Instances[*].PublicIpAddress')
 
-echo $IP_ADDRESS
