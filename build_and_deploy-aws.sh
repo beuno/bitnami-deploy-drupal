@@ -33,7 +33,9 @@ while state=$(aws ec2 describe-instances \
   --instance-ids $INSTANCE_ID \
   --output text \
   --region $ZONE \
-  --query 'Reservations[*].Instances[*].State.Name'); test "$state" = "pending"; do sleep 1; echo " $state"
+  --query 'Reservations[*].Instances[*].State.Name'); test "$state" = "pending"; do
+    sleep 1;
+done; echo " $state"
 
 # Public IP address of the instance 
 IP_ADDRESS=$(aws ec2 describe-instances \
