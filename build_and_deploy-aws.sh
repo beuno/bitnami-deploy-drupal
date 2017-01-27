@@ -20,7 +20,18 @@ INSTANCE_ID=$(aws ec2 run-instances \
   --count $INSTANCE_COUNT \
   --instance-type $INSTANCE_TYPE \
   --key-name $INSTANCE_KEY_NAME \
-  --region $ZONE | awk '/INSTANCE/{print $2}')
+  --region $ZONE \
+  --output text \
+  --query 'Instances[*].InstanceId')
 
 echo $INSTANCE_ID
 
+# Wait for the instance to boot
+while state=$(aws ec2 describe-instances --instance-ids $instance_id --output text --query 'Reservations[*].Instances[*].State.Name'); test "$state" = "pending"; do
+  sleep 1; echo -n '.'
+done; echo " $state"
+
+# Print out the public IP address of the instance 
+IP_ADDRESS=$(aws ec2 describe-instances --instance-ids $instance_id --output text --query 'Reservations[*].Instances[*].PublicIpAddress')
+
+echo $IP_ADDRESS
