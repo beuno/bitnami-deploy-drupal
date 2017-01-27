@@ -26,20 +26,19 @@ INSTANCE_ID=$(aws ec2 run-instances \
 
 aws ec2 create-tags --resources $INSTANCE_ID \
   --region $ZONE \
-  --tags Key=name,Value=$BUILD_TAG
+  --tags Key=Name,Value=$BUILD_TAG
 
 # Wait for the instance to boot
 while state=$(aws ec2 describe-instances \
   --instance-ids $INSTANCE_ID \
   --output text \
   --region $ZONE \
-  --query 'Reservations[*].Instances[*].State.Name'); test "$state" = "pending"; do
-  sleep 1; echo -n '.'
-done; echo " $state"
+  --query 'Reservations[*].Instances[*].State.Name'); test "$state" = "pending"; do sleep 1; echo " $state"
 
 # Public IP address of the instance 
 IP_ADDRESS=$(aws ec2 describe-instances \
   --instance-ids $INSTANCE_ID \
   --output text \
+  --region $ZONE \
   --query 'Reservations[*].Instances[*].PublicIpAddress')
 
