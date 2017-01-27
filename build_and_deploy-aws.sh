@@ -15,9 +15,12 @@ AMI_ID=$(grep 'artifact,0,id' packer-build-$BUILD_TAG.log | cut -d, -f6 | cut -d
 # Create and boot the instance
 # You need to have AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY env vars or
 # a ~/.aws/* config set up for this to work
-aws ec2 run-instances \
+INSTANCE_ID=$(aws ec2 run-instances \
   --image-id $AMI_ID \
   --count $INSTANCE_COUNT \
   --instance-type $INSTANCE_TYPE \
   --key-name $INSTANCE_KEY_NAME \
-  --region $ZONE
+  --region $ZONE | awk '/INSTANCE/{print $2}')
+
+echo $INSTANCE_ID
+
