@@ -5,7 +5,7 @@
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "{{user `zone`}}",
-    "source_ami": "ami-3ce50d2a",
+    "source_ami": "ami-54fe0c42",
     "instance_type": "m3.medium",
     "ssh_username": "bitnami",
     "ami_name": "{{user `custom_image_name`}}",
