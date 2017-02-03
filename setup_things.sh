@@ -7,7 +7,7 @@ sudo mv /opt/bitnami/drupal /opt/bitnami/drupal.bitnami.orig
 
 # nami path
 sudo mv /tmp/app /opt/bitnami/drupal
-cd /opt/bitnami/drupal && composer install && drush cr
+cd /opt/bitnami/drupal && composer install
 
 
 # Enable our drupal module
