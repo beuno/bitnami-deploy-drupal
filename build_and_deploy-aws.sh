@@ -2,7 +2,7 @@
 set -ex
 
 # What zone to build and deploy in
-ZONE="us-east-1"
+ZONE="eu-central-1"
 INSTANCE_COUNT="1"
 INSTANCE_TYPE="m3.medium"
 
@@ -21,6 +21,7 @@ INSTANCE_ID=$(aws ec2 run-instances \
   --instance-type $INSTANCE_TYPE \
   --key-name $INSTANCE_KEY_NAME \
   --region $ZONE \
+  --security-groups $AWS_SEC_GROUPS \
   --output text \
   --query 'Instances[*].InstanceId')
 
